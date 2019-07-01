@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>My Habits</h1>
+        <div>
+            {% for habit in habits %}
+                <div>
+                    <h2>{{ habit.name }}</h2>
+                    <p><strong>Description:</strong> {{ habit.description }}</p>
+                    <p><strong>Target:</strong> {{ habit.target }}</p>
+                </div>
+                
+                <h3>Observers</h3>
+                {% for observer in habit.observers.all %}
+                <div>
+                    {{ observer.user.username }}
+                </div>
+                {% endfor %}
+
+                <hr>
+
+            {% endfor %}
+        </div>
+{% endblock %}
