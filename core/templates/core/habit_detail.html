@@ -7,6 +7,21 @@
         <p><strong>Target:</strong> {{ habit.target }}</p>
     </div>
 
+    <hr>
+    
+    <h3>Daily Records</h3>
+    {% for daily_record in habit.dailyrecord_set.all %}
+        <div>
+            <p><strong>Day Number:</strong> {{ daily_record.day_number }}</p>
+            <p><strong>Date:</strong> {{ daily_record.date }}</p>
+            <p><strong>Description:</strong> {{ daily_record.description }}</p>
+            <p><strong>Progress:</strong> {{ daily_record.progress }}</p>
+        </div>
+        
+        <hr>
+
+    {% endfor %}
+
     <h3>Observers</h3>
     {% for observer in habit.observers.all %}
         <div>
