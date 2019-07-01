@@ -3,11 +3,11 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Habit(models.Model):
-    name = models.Charfield(max_length=300, help_text= "Enter your habit here")
+    name = models.CharField(max_length=300, help_text= "Enter your habit here")
     description = models.TextField(help_text="Enter the decription of your habit here")
     target = models.IntegerField(help_text = "Enter a target number for your habit")
     user = models.ForeignKey(User, on_delete=models.CASCADE) 
-    observers = models.ManyToManyField(Observer)
+    observers = models.ManyToManyField("Observer")
 
 class DailyRecord(models.Model):
     day_number = models.IntegerField(help_text = "Enter the day number for your habit")
@@ -20,7 +20,7 @@ class DailyRecord(models.Model):
 
 class Comment(models.Model):
     description = models.TextField(help_text="Enter your comment here")
-    observer = models.ForeignKey(Observer, on_delete=models.CASCADE)
+    observer = models.ForeignKey("Observer", on_delete=models.CASCADE)
     daily_record = models.ForeignKey(DailyRecord, on_delete=models.CASCADE)
 
 
