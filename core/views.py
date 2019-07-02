@@ -10,7 +10,8 @@ from django.views.generic.edit import UpdateView
 def list_habits(request):
     """View function for listing a User's habits."""
     habits = request.user.habit_set.all()
-    return render(request, 'core/habit_list.html', {'habits': habits})
+    habits_observed = request.user.observer.habit_set.all()
+    return render(request, 'core/habit_list.html', {'habits': habits, 'habits_observed': habits_observed})
 
 
 def habit_detail(request, pk):

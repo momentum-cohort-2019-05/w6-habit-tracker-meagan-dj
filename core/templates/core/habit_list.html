@@ -21,4 +21,12 @@
 
             {% endfor %}
         </div>
+        <div>
+            <h1>Habits I'm Observing</h1>
+                {% if request.user.observer %}
+                    {% for habit in habits_observed %} 
+                    {{ habit.name }}
+                    {% endfor %}
+                {% endif %}
+        </div>
 {% endblock %}
