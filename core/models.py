@@ -8,7 +8,7 @@ class Habit(models.Model):
     target = models.IntegerField(help_text = "Enter a target number for your habit")
     user = models.ForeignKey(User, on_delete=models.CASCADE) 
     observers = models.ManyToManyField("Observer")
-                                        # to=Observer?
+                                        
 
 
 class DailyRecord(models.Model):
