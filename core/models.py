@@ -19,6 +19,10 @@ class DailyRecord(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     habit = models.ForeignKey(Habit, on_delete=models.CASCADE)
 
+    class Meta:
+        unique_together = [['habit', 'date']]
+
+
 
 class Comment(models.Model):
     description = models.TextField(help_text="Enter your comment here")
