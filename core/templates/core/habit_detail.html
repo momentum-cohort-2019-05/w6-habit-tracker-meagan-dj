@@ -17,7 +17,11 @@
             <p><strong>Description:</strong> {{ daily_record.description }}</p>
             <p><strong>Progress:</strong> {{ daily_record.progress }}</p>
         </div>
-        
+        {% if daily_record.progress > habit.target%}
+        <p class= 'met-goal'>You met your daily goal!</p>
+        {%else%}
+        <p class= 'not-met'>You didn't meet your goal</p>
+        {%endif%}
         <hr>
 
     {% endfor %}

@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   {% block meta %}{% endblock %}
   <title>Habit Tracker - {% block title %}Home{% endblock %}</title>
+  {%load static%}
+  <link rel="stylesheet" href="{%static 'static.css'%}">
 </head>
 <body>
   {% block content %}
