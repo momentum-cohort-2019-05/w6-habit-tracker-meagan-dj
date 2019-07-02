@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from core.forms import DailyRecordForm
 from core.models import DailyRecord
 
+
 # Create your views here.
 def list_habits(request):
     """View function for listing a User's habits."""
@@ -46,3 +47,12 @@ def create_daily_record(request, pk):
     }
 
     return render(request, 'core/create_daily_record.html', context)
+
+
+def view_habit(request, pk):
+    """View function for viewing a single habit"""
+
+
+
+def edit_daily_record(request, pk):
+    """View function for editing the daily record"""
