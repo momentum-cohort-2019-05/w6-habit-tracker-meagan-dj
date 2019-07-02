@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from core.forms import DailyRecordForm
 from core.models import DailyRecord
+from django.views.generic.edit import UpdateView
 
 
 # Create your views here.
@@ -49,10 +50,8 @@ def create_daily_record(request, pk):
     return render(request, 'core/create_daily_record.html', context)
 
 
-def view_habit(request, pk):
-    """View function for viewing a single habit"""
-
-
-
-def edit_daily_record(request, pk):
-    """View function for editing the daily record"""
+class EditDailyRecord(UpdateView):
+    """Class-based view for editing the daily record"""
+    model = DailyRecord 
+    fields = '__all__'
+    success_url = reverse_lazy('habit-list')

@@ -8,10 +8,8 @@ urlpatterns = [
     path('habits/<int:pk>/', views.habit_detail, name='habit-detail'),
     # User can add a DailyRecord to a Habit --> '/habits/<int:pk>/new-record/' - DJ
     path('habits/<int:pk>/new-record/', views.create_daily_record, name='create-daily-record'),
-    # User can view a specific Habit --> 'habits/<int:pk>/' -- Meagan
-    path('habits/<int:pk>/', views.view_habit, name='view-habit'),
     # User can edit a DailyRecord --> '/dailyrecords/<int:pk>/' -- Meagan
-    path('dailyrecords/<int:pk>/', views.edit_daily_record, name='edit-daily-record'),
+    path('dailyrecords/<int:pk>/', views.EditDailyRecord.as_view(), name='daily-record-edit'),
 ]
 
 
