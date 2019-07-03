@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse 
 
 # Create your models here.
 class Habit(models.Model):
@@ -8,6 +9,9 @@ class Habit(models.Model):
     target = models.IntegerField(help_text = "Enter a target number for your habit")
     user = models.ForeignKey(User, on_delete=models.CASCADE) 
     observers = models.ManyToManyField("Observer", blank=True)
+
+    def get_absolute_url(self):
+        return reverse('habit-detail', args=[str(self.id)])
 
     def __str__(self):
         """String for representing the Model object."""

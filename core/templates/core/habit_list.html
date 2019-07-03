@@ -5,7 +5,7 @@
         <div>
             {% for habit in habits %}
                 <div>
-                    <h2>{{ habit.name }}</h2>
+                    <h2><a href= '{{habit.get_absolute_url}}'>{{ habit.name }}</a></h2>
                     <p><strong>Description:</strong> {{ habit.description }}</p>
                     <p><strong>Target:</strong> {{ habit.target }}</p>
                 </div>

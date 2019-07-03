@@ -12,20 +12,17 @@
 <body>
     {% block sidebar %}
     <ul class="sidebar-nav">
-      {% comment %}
       <li><a href="{% url 'index' %}">Home</a></li> 
       
-      <li><a href="">My Habits</a></li>
-      <li><a href="">Habits I'm Observing</a></li>
+      <li><a href="{% url 'habit-list' %}">My Habits</a></li>
     </ul>
        {% if user.is_authenticated %}
          <li>User: {{ user.get_username }}</li>
-         <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
+         <li><a href="/accounts/logout">Logout</a></li>   
        {% else %}
-         <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
+         <li><a href="/accounts/login">Login</a></li>   
        {% endif %} 
       </ul>
-      {% endcomment %}
  {% endblock %}
  
   {% block content %}
