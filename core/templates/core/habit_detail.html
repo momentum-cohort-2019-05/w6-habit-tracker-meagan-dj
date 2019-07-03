@@ -28,6 +28,7 @@
     {% endfor %}
 
     <h3>Observers</h3>
+    <a href="{% url 'create-observer' habit.pk %}">Add Observer</a>
     {% for observer in habit.observers.all %}
         <div>
             {{ observer.user.username }}

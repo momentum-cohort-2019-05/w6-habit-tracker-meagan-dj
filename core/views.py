@@ -66,12 +66,17 @@ def create_observer(request, pk):
         if form.is_valid():
             # check if user is already an observer
             # if user is not an observer, make them an observer
-            observer = Observer(
-                user = form.cleaned_data['user']
-            )
-            observer.save()
+            user = form.cleaned_data['user']
 
-            habit.observers.add(observer)
+            if not hasattr(user, 'observer'):
+                observer = Observer(
+                    user = user
+                )
+                observer.save()
+                habit.observers.add(observer)
+            else:
+                habit.observers.add(user.observer)
+
         return HttpResponseRedirect(reverse_lazy('habit-detail', kwargs = {'pk': pk}))
 
     else:
