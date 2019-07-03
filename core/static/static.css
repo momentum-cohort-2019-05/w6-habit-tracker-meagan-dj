@@ -21,7 +21,7 @@ ul {
 }
   
 .header {
-    background: tomato;
+    background: #317F9E;
 }
   
 .footer {
@@ -90,5 +90,5 @@ body {
 
 .header-image {
     width: 100%;
-    height: auto;
+    height: 500px;
 }
