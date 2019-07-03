@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from core.forms import DailyRecordForm, ObserverForm
-from core.models import DailyRecord,Observer
+from core.forms import DailyRecordForm, ObserverForm, HabitForm
+from core.models import DailyRecord,Observer,Habit
 from django.views.generic.edit import UpdateView
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+@login_required
 def list_habits(request):
     """View function for listing a User's habits."""
     habits = request.user.habit_set.all()
@@ -14,12 +16,14 @@ def list_habits(request):
     return render(request, 'core/habit_list.html', {'habits': habits, 'habits_observed': habits_observed})
 
 
+@login_required
 def habit_detail(request, pk):
     """View function for listing a specific habit."""
     habit = request.user.habit_set.filter(pk=pk).first()
     return render(request, 'core/habit_detail.html', {'habit': habit})
 
 
+@login_required
 def create_daily_record(request, pk):
     """View function for adding a new daily record to a habit."""
     habit = request.user.habit_set.filter(pk=pk).first()
@@ -51,6 +55,7 @@ def create_daily_record(request, pk):
     return render(request, 'core/create_daily_record.html', context)
 
 
+@login_required
 def create_observer(request, pk):
     """View function for adding a new observer to a habit."""
     habit = request.user.habit_set.filter(pk=pk).first()
@@ -79,6 +84,8 @@ def create_observer(request, pk):
 
     return render(request, 'core/add_observer.html', context)
 
+
+
 class EditDailyRecord(UpdateView):
     """Class-based view for editing the daily record"""
     model = DailyRecord 
@@ -88,3 +95,32 @@ class EditDailyRecord(UpdateView):
 
 def index(request):
     return render(request, 'index.html')
+
+
+@login_required
+def create_habit(request):
+    if request.method == 'POST':
+        form = HabitForm(request.POST)
+
+        if form.is_valid():
+            habit = Habit(
+                name = form.cleaned_data['name'],
+                description = form.cleaned_data['description'],
+                target = form.cleaned_data['target'],
+                user = request.user,
+            )
+            habit.save()
+        
+        return HttpResponseRedirect(reverse_lazy('habit-detail', kwargs = {'pk': habit.pk}))
+
+    else:
+        form = HabitForm()
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'core/create_habit.html', context)
+
+
+
