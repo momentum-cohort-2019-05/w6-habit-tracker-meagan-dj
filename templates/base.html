@@ -10,7 +10,26 @@
   <link rel="stylesheet" href="{%static 'static.css'%}">
 </head>
 <body>
+    {% block sidebar %}
+    <ul class="sidebar-nav">
+      {% comment %}
+      <li><a href="{% url 'index' %}">Home</a></li> 
+      
+      <li><a href="">My Habits</a></li>
+      <li><a href="">Habits I'm Observing</a></li>
+    </ul>
+       {% if user.is_authenticated %}
+         <li>User: {{ user.get_username }}</li>
+         <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
+       {% else %}
+         <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
+       {% endif %} 
+      </ul>
+      {% endcomment %}
+ {% endblock %}
+ 
   {% block content %}
+
   {% endblock %}
 </body>
 </html>
