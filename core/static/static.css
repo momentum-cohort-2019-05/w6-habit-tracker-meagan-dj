@@ -1,7 +1,31 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 .met-goal {
     background-color: rgb(16, 237, 16);
 }
 
 .not-met {
     background-color: red;
+}
+
+.index-h1 {
+    font-size: 14px;
+}
+
+/* .header {
+    background-color:  
+}  */
+
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 20px;
+    list-style: none;
+}
+
+.header-image {
+    width: auto;
 }

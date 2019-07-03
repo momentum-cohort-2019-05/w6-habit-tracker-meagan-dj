@@ -10,6 +10,8 @@ urlpatterns = [
     path('habits/<int:pk>/new-record/', views.create_daily_record, name='create-daily-record'),
     # User can edit a DailyRecord --> '/dailyrecords/<int:pk>/' -- Meagan
     path('dailyrecords/<int:pk>/', views.EditDailyRecord.as_view(), name='daily-record-edit'),
+    path('habits/<int:pk>/new-observer/', views.create_observer, name='create-observer'),
+    path('', views.index, name='index'),
 ]
 
 
